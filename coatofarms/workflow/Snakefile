@@ -1,0 +1,56 @@
+
+configfile: os.path.join(workflow.basedir, '../', 'config', 'config.yaml')
+
+# Concatenate Snakemake's own log file with the master log file
+onsuccess:
+    shell("cat {log} >> " + config['log'])
+
+onerror:
+    shell("cat {log} >> " + config['log'])
+
+outTouch = os.path.join(config['output'], config['input'])
+
+### DEFAULT CONFIGs
+
+CSV = config['input']
+OUTPUT = config['output']
+THREADS = config['threads']
+
+MIN_LENGTH = config["min_length"]
+MAX_LENGTH = config["max_length"]
+MIN_QUALITY = config["min_quality"]
+
+EMUDBDIR = config['database']
+MIN_ABUNDANCE = config['MinAbundance']
+
+# snakemake params 
+BigJobMem = config["BigJobMem"]
+BigJobCpu = config["BigJobCpu"]
+SmallJobMem = config["SmallJobMem"]
+SmallJobCpu = config["SmallJobCpu"]
+SmallTime = config["SmallTime"]
+BigTime = config["BigTime"]
+MediumTime = config["MediumTime"]
+
+
+
+### DIRECTORIES
+include: "rules/directories.smk"
+
+# Parse the samples and read files
+include: "rules/samples.smk"
+dictReads = parseSamples(INPUT_CSV)
+SAMPLES = list(dictReads.keys())
+
+
+
+# import targets
+include: "rules/targets.smk"
+
+# Import rules and functions
+include: "rules/qc.smk"
+include: "rules/emu.smk"
+
+rule all:
+    input:
+        TargetFiles

@@ -1,0 +1,4 @@
+include coatofarms/coatofarms.LICENSE
+include coatofarms/coatofarms.CITATION
+include coatofarms/coatofarms.VERSION
+recursive-include coatofarms *

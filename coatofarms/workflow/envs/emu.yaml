@@ -1,0 +1,8 @@
+name: emu
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - emu
+    - krona

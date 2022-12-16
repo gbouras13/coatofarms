@@ -1,0 +1,27 @@
+# Snakemake config
+input:
+output: 'coatofarms_out/'
+log: 'coatofarms/coatofarms.log'
+
+# Snakemake config
+threads: 16
+
+# Nanopore QC params
+min_length: 1500
+max_length: 1500
+min_quality: 9
+
+# Snakemake Params
+BigJobMem: 60000     
+BigJobCpu: 16       
+SmallJobMem: 4000
+SmallJobCpu: 1 
+SmallTime: 5
+BigTime: 300
+MediumTime: 120
+
+# abundance threshold
+MinAbundance: 0.001 
+
+# database directory 
+database: 'database'
