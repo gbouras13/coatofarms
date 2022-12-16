@@ -19,7 +19,7 @@ rule get_db:
         os.path.join(EMUDBDIR,"species_taxid.fasta")
     shell:
         """
-        wget "https://gitlab.com/treangenlab/emu/-/archive/v3.0.0/emu-v3.0.0.tar.gz"
+        wget "https://gitlab.com/treangenlab/emu/-/archive/v3.0.0/emu-v3.0.0.tar.gz" -O emu-v3.0.0.tar.gz
         mkdir -p {params.emu_db}
         tar -xf emu-v3.0.0.tar.gz -C {params.emu_db}
         mv {params.emu_db}/emu-v3.0.0/emu_database/* {params.emu_db}
