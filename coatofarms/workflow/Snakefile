@@ -39,7 +39,7 @@ include: "rules/directories.smk"
 
 # Parse the samples and read files
 include: "rules/samples.smk"
-dictReads = parseSamples(INPUT_CSV)
+dictReads = parseSamples(CSV)
 SAMPLES = list(dictReads.keys())
 
 
