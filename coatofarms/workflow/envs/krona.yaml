@@ -1,7 +1,7 @@
-name: emu
+name: krona
 channels:
     - conda-forge
     - bioconda
     - defaults
 dependencies:
-    - emu
+    - krona

@@ -125,11 +125,13 @@ Required:           coatofarms install --directory [directory]
     ),
 )
 @click.option("--input", "_input", help="Input file/directory", type=str, required=True)
+@click.option('--database', 'database', help='DB directory', show_default=True,  default='Database')
+@click.option('--abundance', 'abundance', help='minimum relative abundance for Emu. Defaults to 0.001 (=0.1%)', show_default=True,  default='0.001 ')
 @common_options
-def run(_input, output, log, **kwargs):
+def run(_input, output, database, threads, log, abundance, **kwargs):
     """Run coatofarms"""
     # Config to add or update in configfile
-    merge_config = {"input": _input, "output": output, "log": log}
+    merge_config = {"input": _input, "output": output, "database": database, "threads": threads, "abundance": abundance, "log": log}
 
     # run!
     run_snakemake(

@@ -22,30 +22,10 @@ rule filtlong:
         filtlong --min_length {params.min_read_size} --max_length {params.max_read_size} --min_mean_q {params.max_q_score} {input} | gzip > {output}
         '''
 
-rule nanoplot:
-    input:
-        os.path.join(PROCESSING,"{sample}_filtlong.fastq.gz")
-    output:
-        os.path.join(NANOPLOT,"{sample}", "passNanoStats.txt")
-    params:
-        directory(os.path.join(NANOPLOT,"{sample}"))
-    resources:
-        mem_mb=SmallJobMem,
-        time=MediumTime
-    conda:
-        os.path.join('..', 'envs','nanoplot.yaml')
-    threads:
-        BigJobCpu
-    shell:
-        '''
-        NanoPlot --prefix pass --fastq {input} -t {threads} -o {params}
-        '''
-
     
 rule aggr_qc:
     input:
-        expand( os.path.join(PROCESSING,"{sample}_filtlong.fastq.gz"), sample = SAMPLES),
-        expand( os.path.join(NANOPLOT,"{sample}", "passNanoStats.txt"), sample = SAMPLES)
+        expand( os.path.join(PROCESSING,"{sample}_filtlong.fastq.gz"), sample = SAMPLES)
     output:
         os.path.join(FLAGS, "aggr_qc.txt")
     threads:

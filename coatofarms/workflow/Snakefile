@@ -49,7 +49,9 @@ include: "rules/targets.smk"
 
 # Import rules and functions
 include: "rules/qc.smk"
+include: "rules/nanoplot.smk"
 include: "rules/emu.smk"
+include: "rules/krona.smk"
 
 rule all:
     input:
