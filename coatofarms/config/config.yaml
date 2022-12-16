@@ -21,7 +21,7 @@ BigTime: 300
 MediumTime: 120
 
 # abundance threshold
-MinAbundance: 0.001 
+MinAbundance: 0.001
 
 # database directory 
 database: 'database'
