@@ -115,7 +115,7 @@ CLUSTER EXECUTION:
 coatofarms install ... 
 \b
 RUN EXAMPLES:
-Required:           coatofarms install --directory [directory]
+Required:           coatofarms install --database [directory]
 """
 
 @click.command(
@@ -176,7 +176,7 @@ def install(database, log, output,  **kwargs):
     merge_config = {  "database": database, 'output': output, "log": log }
     """Install databases"""
     run_snakemake(
-        snakefile_path=snake_base(os.path.join('workflow','installDB.smk')),
+        snakefile_path=snake_base(os.path.join('workflow','InstallDB.smk')),
         merge_config=merge_config,
         **kwargs)
 
