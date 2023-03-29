@@ -1,6 +1,6 @@
 # coatofarms
 
-ONT Long-read 16S Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline using Emu
+ONT Long-read 16S Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline using [Emu](https://gitlab.com/treangenlab/emu)
 
 ```
 git clone "https://github.com/gbouras13/coatofarms.git"
@@ -19,10 +19,10 @@ Downstream analysis (alpha diversities etc) not included.
 Pipeline
 ==========
 
-1. Long-read QC: filtlong to keep all reads between 1300 and 1700 bp and above a minQuality (these can be changed in the config file) (qc.smk).
-2. Nanoplot QC of each input file (nanoplot.smk).
-3. Runs Emu on each sample  and combines the output at the species level (emu.smk). 
-4. Visualised the Emu output using Krona (krona.smk).
+1. Long-read QC: filtlong to keep all reads between 1300 and 1700 bp and above a minimum Quality (these can be changed in the config file) (qc.smk).
+2. Nanoplot QC for each input file (nanoplot.smk).
+3. Runs Emu on each sample and combine the output at the species level (emu.smk). 
+4. Visualise the Emu output for each sample using Krona (krona.smk).
 
 
 Input
@@ -50,7 +50,7 @@ First, you need to specify a species and an output directory to install the defa
 coatofarms install --directory EmuDatabase 
 ```
 
-After that has finished, run the pipeline, specifying the species and reference directory:
+After that has finished, run the pipeline, specifying the minimum detectable abundance and reference directory:
 
 ```
 coatofarms run --input <input.csv> --output <output_dir> --threads <threads> --abundance <min abundance of species for Emu> --directory EmuDatabase 
