@@ -5,3 +5,6 @@ channels:
     - defaults
 dependencies:
     - emu
+    - pip
+    - pip:
+        - osfclient
