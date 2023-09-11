@@ -5,7 +5,6 @@ EMUDBDIR = config['database']
 if not os.path.exists(os.path.join(EMUDBDIR)):
     os.makedirs(os.path.join(EMUDBDIR))
 
-
 rule all:
     input:
         os.path.join(EMUDBDIR,"taxonomy.tsv"),

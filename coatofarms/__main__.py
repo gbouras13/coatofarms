@@ -131,7 +131,6 @@ def run(_input, output, database, threads, log, abundance, **kwargs):
     """Run coatofarms"""
     # Config to add or update in configfile
     merge_config = {"input": _input, "output": output, "database": database, "threads": threads, "abundance": abundance, "log": log}
-
     # run!
     run_snakemake(
         # Full path to Snakefile
@@ -179,8 +178,6 @@ def download(database, log, output,  **kwargs):
         snakefile_path=snake_base(os.path.join('workflow','InstallDB.smk')),
         merge_config=merge_config,
         **kwargs)
-
-
 
 
 @click.command()
