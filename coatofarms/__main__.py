@@ -183,8 +183,6 @@ def download(database, log, output,  **kwargs):
 
 
 
-
-
 @click.command()
 @common_options
 def config(configfile, **kwargs):
@@ -199,7 +197,7 @@ def citation(**kwargs):
 
 
 cli.add_command(run)
-cli.add_command(install)
+cli.add_command(download)
 cli.add_command(config)
 cli.add_command(citation)
 
