@@ -4,7 +4,8 @@ rule emu:
     params:
         db = EMUDBDIR,
         out_dir = EMU,
-        min_abundance = MIN_ABUNDANCE
+        min_abundance = MIN_ABUNDANCE,
+        
     output:
         abundance = os.path.join(EMU,'{sample}_rel-abundance.tsv')
     threads:
@@ -27,6 +28,7 @@ rule aggr_emu:
         EMU
     output:
         os.path.join(EMU_COMBINED,'emu-combined-species.tsv')
+        version = os.path.join(VERSION, 'emu.version')
     conda:
         os.path.join('..', 'envs','emu.yaml')
     threads:
@@ -37,6 +39,7 @@ rule aggr_emu:
     shell:
         '''
         emu combine-outputs {params[0]} 'species'
+        emu --version > {output.version}
         '''
 
 
@@ -44,7 +47,8 @@ rule aggr_emu:
 rule aggr_emu_flag:
     input:
         expand(os.path.join(EMU,'{sample}_rel-abundance.tsv'), sample = SAMPLES),
-        os.path.join(EMU_COMBINED,'emu-combined-species.tsv')
+        os.path.join(EMU_COMBINED,'emu-combined-species.tsv'),
+        os.path.join(VERSION, 'emu.version')
     output:
         os.path.join(FLAGS, "aggr_emu.txt")
     threads:
