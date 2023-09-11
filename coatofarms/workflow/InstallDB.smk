@@ -17,14 +17,13 @@ rule get_db:
     output:
         os.path.join(EMUDBDIR,"taxonomy.tsv"),
         os.path.join(EMUDBDIR,"species_taxid.fasta")
+    conda:
+        os.path.join('..', 'envs','emu.yaml')
     shell:
         """
-        wget "https://gitlab.com/treangenlab/emu/-/archive/v3.0.0/emu-v3.0.0.tar.gz" -O emu-v3.0.0.tar.gz
-        mkdir -p {params.emu_db}
-        tar -xf emu-v3.0.0.tar.gz -C {params.emu_db}
-        mv {params.emu_db}/emu-v3.0.0/emu_database/* {params.emu_db}
-        rm -rf {params.emu_db}/emu-v3.0.0
-        rm emu-v3.0.0.tar.gz
+        cd ${params.emu_db}
+        osf -p 56uf7 fetch osfstorage/emu-prebuilt/emu.tar
+        tar -xvf emu.tar
         """
 
 
