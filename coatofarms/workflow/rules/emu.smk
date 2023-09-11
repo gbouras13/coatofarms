@@ -27,7 +27,7 @@ rule aggr_emu:
     params:
         EMU
     output:
-        os.path.join(EMU_COMBINED,'emu-combined-species.tsv')
+        os.path.join(EMU_COMBINED,'emu-combined-species.tsv'),
         version = os.path.join(VERSION, 'emu.version')
     conda:
         os.path.join('..', 'envs','emu.yaml')

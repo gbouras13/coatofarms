@@ -123,7 +123,7 @@ Required:           coatofarms install --database [directory]
         help_option_names=["-h", "--help"], ignore_unknown_options=True
     ),
 )
-@click.option("--input", "_input", help="Input file/directory", type=str, required=True)
+@click.option("--input", "_input", help="Input file", type=str, required=True)
 @click.option('--database', 'database', help='DB directory', show_default=True,  default='Database')
 @click.option('--abundance', 'abundance', help='minimum relative abundance for Emu. Defaults to 0.001 (=0.1%)', show_default=True,  default='0.001 ')
 @common_options
