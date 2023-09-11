@@ -2,6 +2,8 @@
 
 ONT Long-read 16S Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline using [Emu](https://gitlab.com/treangenlab/emu).
 
+Emu's are a major part Australia's Coat of Arms, now a Kangaroo tool is needed :)
+
 `coatofarms` is a simple pipeline to conduct ONT 16S species level relative abundance quantification that essentially just wraps [Emu](https://gitlab.com/treangenlab/emu) for many samples, along with QC and visualisation using Krona plots. It leverages the embarassingly parallel power of HPC and Snakemake profiles. 
 
 Downstream analysis (alpha diversities etc) not included.
