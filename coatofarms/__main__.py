@@ -170,7 +170,8 @@ def run(_input, output, database, threads, log, abundance, **kwargs):
         )
 @click.option('--database', 'database', help='DB directory', show_default=True,  default='Database')
 @common_options
-def install(database, log, output,  **kwargs):
+def download(database, log, output,  **kwargs):
+    """Install EMU Database"""
     # Config to add or update in configfile
     merge_config = {  "database": database, 'output': output, "log": log }
     """Install databases"""

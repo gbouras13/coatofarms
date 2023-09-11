@@ -1,5 +1,6 @@
 Please cite coatofarms in your paper using this article:
 
+Bouras, G. (2023) coatofarms: ONT Long-read 16S Snakemake pipeline using Emu. https://github.com/gbouras13/coatofarms
 
 Please consider also citing these dependencies:
 Snaketool:
