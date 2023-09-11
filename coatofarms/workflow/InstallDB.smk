@@ -18,7 +18,7 @@ rule get_db:
         os.path.join(EMUDBDIR,"taxonomy.tsv"),
         os.path.join(EMUDBDIR,"species_taxid.fasta")
     conda:
-        os.path.join('..', 'envs','emu.yaml')
+        os.path.join('envs','emu.yaml')
     shell:
         """
         cd ${params.emu_db}
