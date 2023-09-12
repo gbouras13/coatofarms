@@ -1,8 +1,8 @@
-# coatofarms
-
 ONT Long-read 16S Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline using [Emu](https://gitlab.com/treangenlab/emu).
 
-Emu's are a major part Australia's Coat of Arms, now a Kangaroo tool is needed :)
+# Summary
+
+Emus are a major part Australia's Coat of Arms, now a Kangaroo tool is needed :)
 
 `coatofarms` is a simple pipeline to conduct ONT 16S species level relative abundance quantification that essentially just wraps [Emu](https://gitlab.com/treangenlab/emu) for many samples, along with QC and visualisation using Krona plots. It leverages the embarassingly parallel power of HPC and Snakemake profiles. 
 
@@ -10,7 +10,7 @@ Downstream analysis (alpha diversities etc) not included.
 
 # Table of Contents
 
-- [coatofarms](#coatofarms)
+- [Summary](#summary)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Pipeline](#pipeline)
@@ -39,6 +39,7 @@ coatofarms run --help
 2. Nanoplot QC for each input file (nanoplot.smk).
 3. Runs Emu on each sample and combine the output at the species level (emu.smk). 
 4. Visualise the Emu output for each sample using Krona (krona.smk).
+    * The readcount of each post-qc filtered FASTQ file will also be generated and save in this step. 
 
 # Input
 
@@ -49,8 +50,10 @@ coatofarms run --help
 
 e.g.
 
+```
 sample1,sample1_long_read.fastq.gz
 sample2,sample2_long_read.fastq.gz
+```
 
 # Usage
 
