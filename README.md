@@ -28,7 +28,7 @@ git clone "https://github.com/gbouras13/coatofarms.git"
 cd coatofarms/
 pip install -e .
 coatofarms --help
-coatofarms install --help
+coatofarms download --help
 coatofarms run --help
 ```
 
@@ -57,20 +57,20 @@ sample2,sample2_long_read.fastq.gz
 
 # Usage
 
-First, you need to specify a species and an output directory to install the default Emu database.
+First, you need to specify a species and an output directory to download the default Emu database with `coatofarms download`.
 
 ```
-coatofarms install --directory EmuDatabase 
+coatofarms download --directory EmuDatabase 
 ```
 
-After that has finished, run the pipeline, specifying the minimum detectable abundance and reference directory:
+After that has finished, run the pipeline with `coatofarms run`, specifying the minimum detectable abundance and reference directory:
 
 ```
 coatofarms run --input <input.csv> --output <output_dir> --threads <threads> --abundance <min abundance of species for Emu> --directory EmuDatabase 
 ```
 
 
-I would highly highly recommend running hybracter using a Snakemake profile. Please see this blog [post](https://fame.flinders.edu.au/blog/2021/08/02/snakemake-profiles-updated) for more details. I have included an example slurm profile in the profile directory, but check out this [link](https://github.com/Snakemake-Profiles) for more detail on other HPC job scheduler profiles. 
+I would highly highly recommend running `coatofarms` using a Snakemake profile. Please see this blog [post](https://fame.flinders.edu.au/blog/2021/08/02/snakemake-profiles-updated) for more details. I have included an example slurm profile in the profile directory, but check out this [link](https://github.com/Snakemake-Profiles) for more detail on other HPC job scheduler profiles. 
 
 ```
 coatofarms run --input <input.csv> --output <output_dir> --threads <threads>   --directory EmuDatabase  --profile profiles/coatofarms
