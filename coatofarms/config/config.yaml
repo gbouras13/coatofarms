@@ -13,11 +13,11 @@ min_quality: 9
 
 # Snakemake Params
 BigJobMem: 60000     
-BigJobCpu: 16       
+BigJobCpu: 32       
 SmallJobMem: 4000
 SmallJobCpu: 1 
 SmallTime: 5
-BigTime: 300
+BigTime: 1500
 MediumTime: 120
 
 # abundance threshold
