@@ -1,5 +1,6 @@
 [![DOI](https://zenodo.org/badge/578836536.svg)](https://zenodo.org/badge/latestdoi/578836536)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![](https://img.shields.io/static/v1?label=CLI&message=Snaketool&color=blueviolet)](https://github.com/beardymcjohnface/Snaketool)
 
 # `coatofarms`
 
