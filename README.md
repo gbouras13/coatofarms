@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/578836536.svg)](https://zenodo.org/badge/latestdoi/578836536)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ONT Long-read 16S Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline using [Emu](https://gitlab.com/treangenlab/emu).
 
 # Summary
