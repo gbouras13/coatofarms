@@ -123,7 +123,7 @@ Required:           coatofarms install --database [directory]
         help_option_names=["-h", "--help"], ignore_unknown_options=True
     ),
 )
-@click.option("--input", "_input", help="Input file/directory", type=str, required=True)
+@click.option("--input", "_input", help="Input file", type=str, required=True)
 @click.option('--database', 'database', help='DB directory', show_default=True,  default='Database')
 @click.option('--abundance', 'abundance', help='minimum relative abundance for Emu. Defaults to 0.001 (=0.1%)', show_default=True,  default='0.001 ')
 @common_options
@@ -131,7 +131,6 @@ def run(_input, output, database, threads, log, abundance, **kwargs):
     """Run coatofarms"""
     # Config to add or update in configfile
     merge_config = {"input": _input, "output": output, "database": database, "threads": threads, "abundance": abundance, "log": log}
-
     # run!
     run_snakemake(
         # Full path to Snakefile
@@ -170,7 +169,8 @@ def run(_input, output, database, threads, log, abundance, **kwargs):
         )
 @click.option('--database', 'database', help='DB directory', show_default=True,  default='Database')
 @common_options
-def install(database, log, output,  **kwargs):
+def download(database, log, output,  **kwargs):
+    """Install EMU Database"""
     # Config to add or update in configfile
     merge_config = {  "database": database, 'output': output, "log": log }
     """Install databases"""
@@ -178,10 +178,6 @@ def install(database, log, output,  **kwargs):
         snakefile_path=snake_base(os.path.join('workflow','InstallDB.smk')),
         merge_config=merge_config,
         **kwargs)
-
-
-
-
 
 
 @click.command()
@@ -198,7 +194,7 @@ def citation(**kwargs):
 
 
 cli.add_command(run)
-cli.add_command(install)
+cli.add_command(download)
 cli.add_command(config)
 cli.add_command(citation)
 

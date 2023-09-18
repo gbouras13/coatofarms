@@ -4,7 +4,7 @@ channels:
     - bioconda
     - defaults
 dependencies:
-    - emu
+    - emu >=3.4.5
     - pip
     - pip:
         - osfclient

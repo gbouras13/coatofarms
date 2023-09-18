@@ -5,7 +5,6 @@ EMUDBDIR = config['database']
 if not os.path.exists(os.path.join(EMUDBDIR)):
     os.makedirs(os.path.join(EMUDBDIR))
 
-
 rule all:
     input:
         os.path.join(EMUDBDIR,"taxonomy.tsv"),
@@ -21,7 +20,7 @@ rule get_db:
         os.path.join('envs','emu.yaml')
     shell:
         """
-        cd ${params.emu_db}
+        cd {params.emu_db}
         osf -p 56uf7 fetch osfstorage/emu-prebuilt/emu.tar
         tar -xvf emu.tar
         """
