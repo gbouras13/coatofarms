@@ -17,6 +17,7 @@ def combine_outputs(dir_path, rank, split_files=False, count_table=False):
         rank(str): taxonomic rank to combine files on
         return(df): Pandas df of the combined relative abundance files
     """
+    rank = 'lineage'
     keep_ranks = ['tax_id', 'lineage']
     df_combined_full = pd.DataFrame(columns=keep_ranks, dtype=str)
     metric = 'abundance'
@@ -39,19 +40,46 @@ def combine_outputs(dir_path, rank, split_files=False, count_table=False):
                 df_sample_reduced[[name]] = df_sample_reduced[[name]].apply(pd.to_numeric)
                 df_combined_full = pd.merge(df_combined_full, df_sample_reduced, how='outer')
     df_combined_full = df_combined_full.set_index(rank).sort_index().reset_index()
+
+
+    # df_combined_full[['superkingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species'   ]] = df_combined_full['lineage'].str.split(';', expand=True).iloc[:,::-1]
+
+
+    # Split 'lineage' column and determine the number of columns dynamically
+    split_df = df_combined_full['lineage'].str.split(';', expand=True)
+    # delete column 8 (empty)
+    split_df = split_df.drop(7, axis=1)
+    split_df = split_df.replace({None: ''})
+
+
+    # Determine the number of columns based on the maximum number of elements after splitting
+    new_columns = ['superkingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species'   ]
+
+
+    # Assign the split values to new columns
+    df_combined_full[new_columns] = split_df
+    # drop lineage
+    df_combined_full = df_combined_full.drop(columns=['lineage'])
+    # reorder cols
+    reorder_columns = ["species", "genus", "family", "order", "class", "phylum" , "superkingdom"]
+    df_combined_full = df_combined_full[reorder_columns + [col for col in df_combined_full.columns if col not in reorder_columns]]
+
+    # add genus plus species as species
+    df_combined_full['species'] = df_combined_full['genus'].str.cat(df_combined_full['species'], sep=' ')
+
     filename_suffix = ""
     if count_table:
         filename_suffix = "-counts"
     if split_files:
-        abundance_out_path = os.path.join(dir_path, "emu-combined-abundance-{}{}.tsv".format(rank, filename_suffix))
-        tax_out_path = os.path.join(dir_path, "emu-combined-taxonomy-{}.tsv".format(rank))
+        abundance_out_path = os.path.join(dir_path, "emu-combined-abundance-silva{}.tsv".format(rank, filename_suffix))
+        tax_out_path = os.path.join(dir_path, "emu-combined-taxonomy-silva.tsv")
         #stdout.write("Combined taxonomy table generated: {}\n".format(tax_out_path))
         df_combined_full[keep_ranks].to_csv(tax_out_path, sep='\t', index=False)
         keep_ranks.remove(rank)
         df_combined_full.drop(columns=keep_ranks).to_csv(abundance_out_path, sep='\t', index=False)
         #stdout.write("Combined abundance table generated: {}\n".format(abundance_out_path))
     else:
-        out_path = os.path.join(dir_path, "emu-combined-{}{}.tsv".format(rank, filename_suffix))
+        out_path = os.path.join(dir_path, "emu-combined-silva{}.tsv".format(filename_suffix))
         df_combined_full.to_csv(out_path, sep='\t', index=False)
         #stdout.write("Combined table generated: {}\n".format(out_path))
     return df_combined_full
@@ -71,7 +99,7 @@ def main():
     # get the args
     args = get_input()
 
-    combine_outputs(args.directory, "lineage")
+    combine_outputs(args.directory, 'lineage')
 
 
 if __name__ == "__main__":
