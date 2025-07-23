@@ -5,3 +5,4 @@ channels:
     - defaults
 dependencies:
     - nanoplot
+    - python-kaleido
