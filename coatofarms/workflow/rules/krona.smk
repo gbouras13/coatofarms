@@ -20,14 +20,14 @@ rule krona_input:
     output:
         reads = os.path.join(KRONA,'{sample}.txt')
     conda:
-        os.path.join('..', 'envs','krona.yaml')
+        os.path.join('..', 'envs','scripts.yaml')
     threads:
         1
     resources:
         mem_mb=SmallJobMem,
         time=SmallTime
     script:
-        '../scripts/create_tsv_for_krona.py'
+        '../Scripts/create_tsv_for_krona.py'
 
 rule krona:
     input:

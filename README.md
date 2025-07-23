@@ -6,6 +6,10 @@
 
 ONT Long-read 16S Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline using [Emu](https://gitlab.com/treangenlab/emu).
 
+# 23 July 2025
+
+* `coatofarms` is abandonware - I do not have the time or resources to maintain this (and I do not personally analyse long read 16S data anymore). I still hope you find it useful, and I will consider any PRs that fix issues, but I will not be fixing any existing issues going forward.
+
 # Summary
 
 Emus are a major part Australia's Coat of Arms, now a Kangaroo tool is needed :)
