@@ -27,7 +27,7 @@ rule krona_input:
         mem_mb=SmallJobMem,
         time=SmallTime
     script:
-        '../scripts/create_tsv_for_krona.py'
+        '../Scripts/create_tsv_for_krona.py'
 
 rule krona:
     input:
